@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library</title>
+   
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofTmL3xuFnp0D0iEPDIJfiC2L1ddEm6W" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="index.css">
+    <style>
+  
+        .navbar-brand {
+            margin-right: 15px;
+            margin-left: 15px; 
+        }
+   
+            .gray-heading {
+                background-color: rgb(201, 172, 136);
+            }
+       
+            .red-btn {
+                background-color: #FF5733;
+                border-color: #FF5733;
+                color: white;
+            }
+      
+            .custom-section {
+                background-color: #dbc8c8;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 5px 5px 30px rgba(0.1, 0.1, 0.1, 0.1);
+            } 
+            .about-section {
+                background-color: #f9f9f9;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(76, 50, 245, 0.5);
+                margin-bottom: 30px;
+            }
+        
+            .about-section h2 {
+                color: #e74c3c;
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+        
+            .about-section p {
+                color: #8ea5bd;
+                font-size: 18px;
+                line-height: 1.6;
+            }
+          
+            .footer {
+                background-color: #4c70af;
+                color: #fff;
+                text-align: center;
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 30px;
+            }
+        
+            .footer p {
+                margin-bottom: 5px;
+            }
+        
+            .contact-info {
+                font-size: 18px;
+                color: #ccc;
+                margin-bottom: 20px;
+            }
+        
+            .social-icons a {
+                text-decoration: none;
+            }
+    
+            .featured-story {
+                text-align: center;
+                padding: 50px 0;
+                background-color: #f9f9f9;
+            }
+    
+            .featured-story h1 {
+                color: #9162ac;
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+            }
+    
+            .featured-story p {
+                color: #34495e;
+                font-size: 1.2rem;
+            }
+    
+            .btn-primary {
+                background-color: #503ce7;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                margin-top: 20px;
+                display: inline-block;
+                transition: background-color 0.3s;
+            }
+    
+            .btn-primary:hover {
+                background-color: #c02b82;
+            }
+    
+            .featured-story h2 {
+                color: #4f2821;
+                font-size: 2rem;
+                margin-top: 40px;
+            }
+    
+            .featured-story .col-md-3 {
+                margin-top: 30px;
+            }
+    
+            .featured-story img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+    
+            .featured-story h4 {
+                margin-top: 10px;
+                font-size: 1.5rem;
+                color: #3993ed;
+            }
+    
+            .featured-story p {
+                color: #4597ea;
+                font-size: 1rem;
+            }
+    
+            .custom-section {
+                padding: 40px 0;
+            }
+        
+            .card {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                margin-bottom: 30px;
+                border: none; 
+                height: 100%;
+            }
+        
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            }
+        
+            .card-body {
+                padding: 20px;
+                text-align: center;
+            }
+        
+            .gray-heading {
+                background-color: #bdc3c7;
+                color: #fff;
+                padding: 10px 15px;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+        
+            .menu-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+        
+            .item-name {
+                font-weight: bold;
+            }
+        
+            .item-price {
+                float: right;
+                color: #a17e5f;
+            }
+        
+            .form-group {
+                margin-bottom: 20px;
+            }
+        
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+            }
+        
+            .order-btn {
+                background-color: #957471;
+                border-color: #9e7874;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, border-color 0.3s ease;
+                margin-top: 15px;
+            }
+        
+            .order-btn:hover {
+                background-color: #b9c8d2;
+                border-color: #1e2224;
+            }
+        
+        
+        </style>
+</head>
+
+<body>
+<section>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #906092;">
+        <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="" alt="">
+            <span style="font-weight:bold; color: #ecf0f1;">Library</span>
+             <span style="color: #cc938d;"> coco</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #708990;" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5f757a;" href="categories.html">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #64797e;" href="cart.html">cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #75898e;" href="payment.html">Payments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #526469;" href="contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+    
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="33.jpg" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+            <img src="3.jpg" class="d-block w-100" alt="Slide 2">
+        </div>
+
+
+</div>
+
+
+
+<style>
+ 
+
+    .order-button {
+        display: block;
+        background-color: #552d28;
+        color: #fff;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .order-button:hover {
+        background-color: #c0392b;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .welcome-section {
+        background-color: #f7f7f7;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .-logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .library-logo img {
+        max-width: 50%;
+        max-height: 80%;
+    }
+
+    .welcome-text {
+        font-size: 2.5rem;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        background-color: #ff914d;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #ffad80;
+    }
+  
+</style>
+
+<div class="welcome-section">
+    <div class="library-logo">
+        <img src="coco library-logos_black.png" alt="Library">
+    </div>
+    <h1 class="welcome-text">Welcome to Our Books Library</h1>
+    <p>welcome to my aesthetic library</p>
+   <p> swipe up to explore Books</p>
+</div>
+
+
+<div class="container">
+    <div class="row" id="bookDetailsRow">
+     
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>Email: 22pwbcs0955@gmail.com</p>
+                <p>Phone: +9277665544 </p>
+        
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>

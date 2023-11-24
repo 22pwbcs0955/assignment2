@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Book Categories</title>
+    <link rel="stylesheet" href="categories.css">
+    <style>
+        .navbar-brand {
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+    </style>
+    <style>
+         .category-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .category-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #906092;">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="" alt="">
+                <span style="font-weight:bold; color: #262e30;">Library</span> <span style="color: #cc938d;">coco</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ecf0f1;" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ecf0f1;" href="categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ecf0f1;" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ecf0f1;" href="payment.html">Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ecf0f1;" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex" id="searchForm">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>                        
+                    </li>
+
+
+                    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('books.json')
+        .then(response => response.json())
+        .then(data => {
+            
+            populateCategories(data);
+            displayBooks(data);
+
+        
+            const searchForm = document.getElementById('searchForm');
+            searchForm.addEventListener('submit', function (event) {
+                event.preventDefault(); 
+
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+                const filteredBooks = data.filter(book =>
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm)
+                );
+
+               
+                displayBooks(filteredBooks);
+            });
+        })
+        .catch(error => console.error('Error fetching books:', error));
+        const categoryFilter = document.getElementById('category');
+categoryFilter.addEventListener('change', function () {
+    const selectedCategory = categoryFilter.value.toLowerCase();
+
+ 
+    const filteredBooks = data.filter(book =>
+        book.category.toLowerCase() === selectedCategory
+    );
+
+ 
+    displayBooks(filteredBooks);
+});
+
+
+function populateCategories(data) {
+   
+    const categoryFilter = document.getElementById('category');
+
+    
+    const categories = [...new Set(data.map(book => book.category))];
+
+    categories.forEach(category => {
+    
+        const option = document.createElement('option');
+
+       
+        option.value = category;
+        option.text = category;
+
+       
+        categoryFilter.appendChild(option);
+    });
+}
+
+    function displayBooks(books) {
+        const bookList = document.querySelector('.book-list');
+        bookList.innerHTML = '';
+    
+        books.forEach(book => {
+        
+            const card = document.createElement('div');
+            card.classList.add('book-card');
+    
+            const title = document.createElement('h2');
+            title.textContent = 'Title: ' + book.title;
+    
+            const author = document.createElement('p');
+            author.textContent = 'Author: ' + book.author;
+    
+            const category = document.createElement('p');
+            category.textContent = 'Category: ' + book.category;
+    
+            const description = document.createElement('p');
+            description.textContent = 'Description: ' + book.description;
+    
+                 
+                    card.appendChild(title);
+                    card.appendChild(author);
+                    card.appendChild(category);
+                    card.appendChild(description);
+            
+                   
+                    bookList.appendChild(card);
+                });
+            }
+});
+
+                    </script>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="filters">
+        <label for="category">Filter by Category:</label>
+        <select id="category">
+        </select>
+    </section>
+
+    <section class="book-list">
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
